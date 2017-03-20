@@ -1,4 +1,4 @@
-var apiUrl = "http://grub-api.heroku.com/v1"
+var apiUrl = "https://grub-api.heroku.com/v1"
 
 var latitude = 0.0;
 var longitude = 0.0;
