@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+    <link rel="stylesheet" href="layout.css" type="text/css">
+    <script src="config.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <script src="grubber.js" type="text/javascript" async></script>
+	<script type="text/javascript">
+		document.write("<script type='text/javascript' src=https://maps.googleapis.com/maps/api/js?key=" + config.GP_KEY + "callback=init async><\/script>");
+	</script>
+<title>Grubber</title>
+</head>
+<body>
+	<ul class="topSearchBar" id="grubNav">
+		<li>
+			<a class="active" href="#home">Grubber</a>
+		</li>
+		<li><input id="searchInputId" placeholder="Search for a place or keyword..." type="searchinputfield"> <input id="placesSubmitButton" onclick="searchButtonPressed()" type="button" value="Search"></li>
+		<li><input id="areaInputId" placeholder="Area" type="areainputfield"> <input id="areaSubmitButton" onclick="areaButtonPressed()" type="button" value="Set"></li>
+		<li class="rightLogin"><span id="logoutButtonId" onclick="logoutButtonPressed()"><i class="fa fa-sign-out fa-lg"></i></span></li>
+		<li class="rightLogin">
+			<div id="usernameTextId">
+			</div>
+		</li>
+		<li class="rightLogin"><input class="registerButton" id="registerButtonId" onclick="registerButtonPressed()" type="button" value="Register"></li>
+		<li class="rightLogin"><input class="loginButton" id="loginButtonId" onclick="loginButtonPressed()" type="button" value="Login"></li>
+	</ul>
+	<ul class="bottomPlaceBar" id="placeNav">
+		<li>
+			<a id="Asian" onclick="bottomBarPlacePressed(this.id)" href="#places">Asian</a>
+		</li>
+		<li>
+			<a id="Mexican" onclick="bottomBarPlacePressed(this.id)" href="#places">Mexican</a>
+		</li>
+		<li>
+			<a id="Italian" onclick="bottomBarPlacePressed(this.id)" href="#places">Italian</a>
+		</li>
+		<li>
+			<a id="Indian" onclick="bottomBarPlacePressed(this.id)" href="#places">Indian</a>
+		</li>
+		<li>
+			<a id="American" onclick="bottomBarPlacePressed(this.id)" href="#places">American</a>
+		</li>
+		<li>
+			<a id="French" onclick="bottomBarPlacePressed(this.id)" href="#places">French</a>
+		</li>
+		<li>
+			<a id="All" onclick="bottomBarPlacePressed(this.id)" href="#places">All</a>
+		</li>
+		<li>
+			<a id="Random" onclick="bottomBarPlacePressed(this.id)" href="#places">Random</a>
+		</li>
+	</ul>
+	<!-- The Modal -->
+	<div class="loginModal" id="loginModalId">
+		<!-- Modal content -->
+		<div class="loginModalContent">
+			<div class="loginModalHeader">
+				<span class="close" onclick="closeButtonPressed()">&times;</span>
+				<div id="loginModalText">
+					Register
+				</div>
+			</div>
+			<div class="loginModalBody">
+				<ul class="loginModalList">
+					<li class="loginInputList"><input class="loginInputListField" id="usernameId" placeholder="Username" type="text"></li>
+					<li class="loginInputList"><input class="loginInputListField" id="passwordId" placeholder="Password" type="text"></li>
+					<li class="loginInputList"><input class="loginInputListField" id="confirmPasswordId" placeholder="Re-Enter Password" type="text"></li>
+					<li class="loginInputList"><input class="loginInputListButton" id="modalLoginButtonId" onclick="modalLoginButtonPressed()" type="button" value="Register"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div id="alert"><a onclick="dismissAlert()" id="alertBanner" href="#alert"></a></div>
+	<div class="mainBodyContainer">
+		<div class="searchResultsDiv"></div>
+		<div class="addPlaceFormDiv">
+			<div>
+				<input id="addPlaceFormNameId" placeholder="Name" type="addplaceform"><br>
+			</div>
+			<div>
+				<input id="addPlaceFormLocationId" placeholder="Location" type="addplaceform"><br>
+			</div>
+			<div>
+				<input id="addPlaceFormWebsiteId" placeholder="Website URL" type="addplaceform"><br>
+			</div>
+			<div>
+				<input id="addPlaceFormMenuId" placeholder="Menu URL" type="addplaceform"><br>
+			</div>
+			<div id="selectDropdownDiv">
+				<div id="genreDropdownSelectDiv">
+					<select id="genreDropdownSelect" onclick="selectedGenre()">
+						<option>Asian</option>
+						<option>Mexican</option>
+						<option>Italian</option>
+						<option>Indian</option>
+						<option>American</option>
+						<option>French</option>
+					</select>
+				</div>
+			</div>
+			<div id="selectDropdownDiv">
+				<div id="serviceTypeDropdownSelectDiv">
+					<select id="serviceTypeDropdownSelect" onclick="selectedType()">
+						<option>Fast-Food</option>
+						<option>Traditional</option>
+						<option>Fine Dining</option>
+						<option>Bar</option>
+						<option>Bistro</option>
+						<option>Cafe</option>
+						<option>Counter</option>
+					</select>
+				</div>
+			</div>
+			<div id="ratingDiv">
+				<div class="price">
+				  <input id="priceId4" name="price" type="radio" value="3"><label name="price_label" for="priceId4" title="expensive"></label> 
+				  <input id="priceId3" name="price" type="radio" value="2"><label name="price_label" for="priceId3" title="pricey"></label> 
+				  <input id="priceId2" name="price" type="radio" value="1"><label name="price_label" for="priceId2" title="tolerable"></label> 
+				  <input id="priceId1" name="price" type="radio" value="0"><label name="price_label" for="priceId1" title="cheap"></label>
+				</div>
+			</div><input id="addPlaceButtonId" onclick="addPlaceButtonPressed()" type="button" value="Add Place">
+		</div>
+		<div class="placesDiv">
+			<div id="mapWrapper">
+				<div id="smallPlaceMap"></div>
+				<div id="overMap"></div>
+				<div id="editPlace"><i class='fa fa-pencil fa-lg'></i></div>
+			</div>
+			<div id="addPlaceRating">
+				<div id="ratingDiv">
+					<div class="serviceRating">
+					  Service Rating<br>
+					  <input id="serviceId5" name="serviceRating" type="radio" value="4"><label name="serviceLabel" for="serviceId5" title="great"></label>
+					  <input id="serviceId4" name="serviceRating" type="radio" value="3"><label name="serviceLabel" for="serviceId4" title="good"></label> 
+					  <input id="serviceId3" name="serviceRating" type="radio" value="2"><label name="serviceLabel" for="serviceId3" title="tolerable"></label> 
+					  <input id="serviceId2" name="serviceRating" type="radio" value="1"><label name="serviceLabel" for="serviceId2" title="bad"></label> 
+					  <input id="serviceId1" name="serviceRating" type="radio" value="0"><label name="serviceLabel" for="serviceId1" title="terrible"></label>
+					</div>
+				</div>
+				<div id="ratingDiv">
+					<div class="foodRating">
+					  Food Rating<br>
+					  <input id="foodId5" name="foodRating" type="radio" value="4"><label name="foodLabel" for="foodId5" title="great"></label> 
+					  <input id="foodId4" name="foodRating" type="radio" value="3"><label name="foodLabel" for="foodId4" title="good"></label> 
+					  <input id="foodId3" name="foodRating" type="radio" value="2"><label name="foodLabel" for="foodId3" title="tolerable"></label> 
+					  <input id="foodId2" name="foodRating" type="radio" value="1"><label name="foodLabel" for="foodId2" title="bad"></label> 
+					  <input id="foodId1" name="foodRating" type="radio" value="0"><label name="foodLabel" for="foodId1" title="terrible"></label>
+					</div>
+				</div>
+				</br>
+				<textarea id="placeRatingTextArea" rows="8" cols="53" placeholder="Comments? (Optional)"></textarea>
+				<input id="placeRatingButtonId" onclick="placeRatingButtonPressed()" type="button" value="Add Rating">
+			</div>
+			<div id="placeRatings">
+			</div>
+		</div>
+	</div>
+</body>
+</html>
