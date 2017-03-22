@@ -675,9 +675,25 @@ function attemptLogin(username, password) {
 	URLREQUEST, ALERT, REUSABLE FUNCTIONS
 */
 
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  return xhr;
+}
+
 function executeRequest(requestType, urlString, parameters, callback) {
 	var accessToken = localStorage.getItem("access_token");
-	xhr = new XMLHttpRequest();
+	var xhr = createCORSRequest(requestType, urlString);
 	var registerUrl = apiUrl + urlString;
 	xhr.open(requestType, registerUrl, true);
 	xhr.setRequestHeader("Content-Type", "application/json");
