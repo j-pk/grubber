@@ -696,7 +696,6 @@ function executeRequest(requestType, urlString, parameters, callback) {
 	var registerUrl = apiUrl + urlString;
 	var xhr = createCORSRequest(requestType, registerUrl);
 	xhr.setRequestHeader("Content-Type", "application/json");
-	xhr.setRequestHeader("Origin", "https://grubber.herokuapp.com")
 	if (accessToken !== null) {
 		xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
 	} 
