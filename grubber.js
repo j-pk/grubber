@@ -693,9 +693,9 @@ function createCORSRequest(method, url) {
 
 function executeRequest(requestType, urlString, parameters, callback) {
 	var accessToken = localStorage.getItem("access_token");
-	var xhr = createCORSRequest(requestType, urlString);
 	var registerUrl = apiUrl + urlString;
 // 	xhr.open(requestType, registerUrl, true);
+	var xhr = createCORSRequest(requestType, registerUrl);
 	xhr.setRequestHeader("Content-Type", "application/json");
 	if (accessToken !== null) {
 		xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
