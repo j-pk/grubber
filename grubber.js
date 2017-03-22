@@ -694,9 +694,9 @@ function createCORSRequest(method, url) {
 function executeRequest(requestType, urlString, parameters, callback) {
 	var accessToken = localStorage.getItem("access_token");
 	var registerUrl = apiUrl + urlString;
-// 	xhr.open(requestType, registerUrl, true);
 	var xhr = createCORSRequest(requestType, registerUrl);
 	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.setRequestHeader("Origin", "https://grubber.herokuapp.com")
 	if (accessToken !== null) {
 		xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
 	} 
@@ -707,7 +707,7 @@ function executeRequest(requestType, urlString, parameters, callback) {
 				var json = JSON.parse(xhr.responseText);
 				callback(json);
 			} else {
-				console.log("Request failed:" + requestType, registerUrl, parameters);
+				console.log("Request failed:" + requestType, registerUrl, parameters, xhr.responseText);
 				showAlert(AlertTypeEnum.error.name, "Error: " + xhr.statusText)
 			}
 		}
