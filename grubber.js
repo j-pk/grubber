@@ -680,6 +680,7 @@ function createCORSRequest(method, url) {
   if ("withCredentials" in xhr) {
     // XHR for Chrome/Firefox/Opera/Safari.
     xhr.open(method, url, true);
+    console.log("url");
   } else if (typeof XDomainRequest != "undefined") {
     // XDomainRequest for IE.
     xhr = new XDomainRequest();
@@ -693,13 +694,12 @@ function createCORSRequest(method, url) {
 
 function executeRequest(requestType, urlString, parameters, callback) {
 	var accessToken = localStorage.getItem("access_token");
-	var registerUrl = apiUrl + urlString;
+	var registerUrl = "https://grub-api.heroku.com/v1" + urlString;
 	var xhr = createCORSRequest(requestType, registerUrl);
 	xhr.setRequestHeader("Content-Type", "application/json");
 	if (accessToken !== null) {
 		xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
 	} 
-
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
