@@ -694,7 +694,7 @@ function createCORSRequest(method, url) {
 
 function executeRequest(requestType, urlString, parameters, callback) {
 	var accessToken = localStorage.getItem("access_token");
-	var registerUrl = "https://grub-api.heroku.com/v1" + urlString;
+	var registerUrl = "//grub-api.heroku.com/v1" + urlString;
 	var xhr = createCORSRequest(requestType, registerUrl);
 	xhr.setRequestHeader("Content-Type", "application/json");
 	if (accessToken !== null) {
