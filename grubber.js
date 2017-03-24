@@ -694,7 +694,7 @@ function createCORSRequest(method, url) {
 
 function executeRequest(requestType, urlString, parameters, callback) {
 	var accessToken = localStorage.getItem("access_token");
-	var registerUrl = "//grub-api.heroku.com/v1" + urlString;
+		var registerUrl = "https://grub-api.heroku.com/v1" + urlString;
 	var xhr = createCORSRequest(requestType, registerUrl);
 	xhr.setRequestHeader("Content-Type", "application/json");
 	if (accessToken !== null) {
@@ -763,6 +763,6 @@ if (!String.linkify) {
 		var pseudoUrlPattern = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
 		// Email addresses
 		var emailAddressPattern = /[\w.]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+/gim;
-		return this.replace(urlPattern, '<a href="$&">$&<\/a>').replace(pseudoUrlPattern, '$1<a href="http://$2">$2<\/a>').replace(emailAddressPattern, '<a href="mailto:$&">$&<\/a>');
+		return this.replace(urlPattern, '<a href="$&">$&<\/a>').replace(pseudoUrlPattern, '$1<a href="https://$2">$2<\/a>').replace(emailAddressPattern, '<a href="mailto:$&">$&<\/a>');
 	};
 } 
