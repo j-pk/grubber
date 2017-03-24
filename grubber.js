@@ -680,7 +680,7 @@ function createCORSRequest(method, url) {
   if ("withCredentials" in xhr) {
     // XHR for Chrome/Firefox/Opera/Safari.
     xhr.open(method, url, true);
-    console.log("url");
+    console.log(url);
   } else if (typeof XDomainRequest != "undefined") {
     // XDomainRequest for IE.
     xhr = new XDomainRequest();
