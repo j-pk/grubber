@@ -252,7 +252,7 @@ function addPlaceButtonPressed() {
 	var costRating = document.getElementsByName("price");
 	var requestType = RequestTypeEnum.post.name;
 	var urlString  = "/places";
-	if (selectedPlaceId) {
+	if (document.getElementById("addPlaceButtonId").value == "Save Edit") {
 		urlString = "/places/" + '' + selectedPlaceId;
 		requestType = RequestTypeEnum.patch.name;
 	} 
@@ -459,6 +459,7 @@ function placeRatingButtonPressed() {
 
 
 function resetPlaceRatingDiv() {
+	selectedPlaceId = null;
 	var serviceRating = document.getElementsByName("serviceRating");
 	var foodRating = document.getElementsByName("foodRating");
 	for (var i = 0; i < foodRating.length; i++) {
@@ -628,6 +629,9 @@ function modalLoginButtonPressed() {
 function logoutButtonPressed() {
 	localStorage.removeItem("username");
 	localStorage.removeItem("access_token");
+	document.getElementById('searchInputId').value = '';
+	document.getElementById('areaInputId').value = '';
+	document.getElementById('areaSubmitButton').style.backgroundColor = '#CC0000';
 	document.getElementById("registerButtonId").style.display = 'block'
 	document.getElementById("loginButtonId").style.display = 'block'
 	document.getElementById("usernameTextId").style.display = 'none';
